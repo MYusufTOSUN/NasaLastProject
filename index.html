@@ -1,0 +1,560 @@
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A World Away – Exoplanet Detection with AI</title>
+        
+        <!-- Reveal.js CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css" id="theme">
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/theme.css">
+        <link rel="stylesheet" href="css/custom.css">
+        
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+        
+        <!-- Font Awesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body class="print-pdf">
+        
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="tr">TR</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        
+        <!-- Stars Background -->
+        <div id="stars"></div>
+        
+        <div class="reveal">
+            <div class="slides">
+                
+                <!-- Slide 1: Title -->
+                <section class="title-slide">
+                    <div class="title-content">
+                        <div class="title-badge">
+                            <i class="fas fa-satellite"></i>
+                            <span data-i18n="aiPowered">AI-Powered</span>
+                        </div>
+                        <h1 class="gradient-title" data-i18n="title">A World Away – Exoplanet Detection with AI</h1>
+                        <p class="team-name" data-i18n="team">Your Team / Organization</p>
+                        
+                        <div class="stats-preview">
+                            <div class="stat-box">
+                                <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                                <div class="stat-value" data-count="98.6">0</div>
+                                <div class="stat-label" data-i18n="accuracy">Accuracy</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="stat-value" data-count="880">0</div>
+                                <div class="stat-label" data-i18n="datasets">Datasets</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                                <div class="stat-value" data-count="50">0</div>
+                                <div class="stat-label" data-i18n="inference">DataAnalyze Time</div>
+                            </div>
+                        </div>
+                        
+                        <button class="demo-btn" id="openDemoBtn">
+                            <i class="fas fa-rocket"></i>
+                            <span data-i18n="openDemo">Open Live Demo</span>
+                        </button>
+                    </div>
+                    <aside class="notes">
+                        Proje tanıtımı. AI destekli ötegezegen tespiti projesi. Yüksek doğruluk oranı ve hızlı inference süresi.
+                    </aside>
+                </section>
+                
+                <!-- Slide 2: Motivation -->
+                <section class="motivation-slide">
+                    <h2 data-i18n="motivationTitle">Motivation</h2>
+                    
+                    <div class="motivation-grid">
+                        <div class="motivation-card">
+                            <div class="card-header">
+                                <i class="fas fa-star"></i>
+                                <h3 data-i18n="motivCard1Title">The Challenge</h3>
+                            </div>
+                            <p data-i18n="motivCard1">Binlerce yıldız, milyonlarca veri noktası. Manuel analiz imkansız.</p>
+                            <div class="card-stat">
+                                <span class="big-number">5000+</span>
+                                <span class="stat-desc" data-i18n="confirmedPlanets">Confırmed Exoplanets</span>
+                            </div>
+                        </div>
+                        
+                        <div class="motivation-card">
+                            <div class="card-header">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3 data-i18n="motivCard2Title">The Problem</h3>
+                            </div>
+                            <p data-i18n="motivCard2">Manuel analiz yavaş, hata eğilimli ve ölçeklenemiyor.</p>
+                            <div class="card-stat">
+                                <span class="big-number">~5%</span>
+                                <span class="stat-desc" data-i18n="humanError">Human Error Rate</span>
+                            </div>
+                        </div>
+                        
+                        <div class="motivation-card highlight">
+                            <div class="card-header">
+                                <i class="fas fa-brain"></i>
+                                <h3 data-i18n="motivCard3Title">The Solution</h3>
+                            </div>
+                            <p data-i18n="motivCard3">AI ile hızlı, doğru ve ölçeklenebilir otomatik tespit.</p>
+                            <div class="card-stat">
+                                <span class="big-number">98.6%</span>
+                                <span class="stat-desc" data-i18n="aiAccuracy">AI Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <aside class="notes">
+                        Projenin motivasyonu: 5000+ onaylanmış ötegezegen var ama milyonlarca analiz edilmemiş veri var.
+                    </aside>
+                </section>
+                
+                <!-- Slide 3: Data Pipeline -->
+                <section class="pipeline-slide">
+                    <h2 data-i18n="pipelineTitle">Data Pipeline</h2>
+                    
+                    <div class="pipeline-visual">
+                        <div class="pipeline-stage" data-stage="1">
+                            <div class="stage-icon"><i class="fas fa-database"></i></div>
+                            <h4>MAST</h4>
+                            <p class="stage-desc" data-i18n="stage1">NASA's data archive</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage" data-stage="2">
+                            <div class="stage-icon"><i class="fas fa-wave-square"></i></div>
+                            <h4>Lightkurve</h4>
+                            <p class="stage-desc" data-i18n="stage2">Data extraction</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage" data-stage="3">
+                            <div class="stage-icon"><i class="fas fa-broom"></i></div>
+                            <h4>Clean & Flatten</h4>
+                            <p class="stage-desc" data-i18n="stage3">Noise removal</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage" data-stage="4">
+                            <div class="stage-icon"><i class="fas fa-search"></i></div>
+                            <h4>BLS Algorithm</h4>
+                            <p class="stage-desc" data-i18n="stage4">Transit detection</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage" data-stage="5">
+                            <div class="stage-icon"><i class="fas fa-sync"></i></div>
+                            <h4>Phase-Fold</h4>
+                            <p class="stage-desc" data-i18n="stage5">Data alignment</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage" data-stage="6">
+                            <div class="stage-icon"><i class="fas fa-image"></i></div>
+                            <h4>PNG + Labels</h4>
+                            <p class="stage-desc" data-i18n="stage6">Image generation</p>
+                        </div>
+                        
+                        <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="pipeline-stage highlight" data-stage="7">
+                            <div class="stage-icon"><i class="fas fa-robot"></i></div>
+                            <h4>YOLOv8</h4>
+                            <p class="stage-desc" data-i18n="stage7">AI Classification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pipeline-stats">
+                        <div class="pipe-stat premium">
+                            <i class="fas fa-chart-bar"></i>
+                            <span><strong>880</strong> <span data-i18n="images">görüntü</span></span>
+                        </div>
+                        <div class="pipe-stat premium">
+                            <i class="fas fa-layer-group"></i>
+                            <span><strong>7</strong> <span data-i18n="stages">aşama</span></span>
+                        </div>
+                        <div class="pipe-stat premium">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span id="procPhrase" data-i18n="processingTimePhrase">minutes processing time</span>
+                        </div>
+                    </div>
+                    
+                    <aside class="notes">
+                        Veri akışı 7 aşamadan oluşuyor: MAST'tan YOLOv8'e kadar tam otomatik pipeline.
+                    </aside>
+                </section>
+                
+                
+                
+                <!-- Slide 6: Web UI -->
+                <section class="web-ui-slide">
+                    <h2 data-i18n="webUITitle">Web Interface<h3>(Veriler Temsilidir)</h3></h2>
+                    
+                    <div class="ui-showcase">
+                        <!-- Discovery Card -->
+                        <div class="ui-card discovery-card">
+                            <!-- Keşif Kartı Başlık -->
+                            <div class="discovery-header">
+                                <div class="discovery-icon">
+                                    <i class="fas fa-scroll"></i>
+                                </div>
+                                <span class="discovery-title" data-i18n="discoveryCard">Keşif Kartı</span>
+                            </div>
+                            <div class="mission-divider"></div>
+                            
+                            <!-- NASA Onaylı Rozeti -->
+                            <div class="nasa-badge" id="discoveryBadge">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="nasaConfirmed">NASA Onaylı</span>
+                            </div>
+                            
+                            <!-- Gezegen Bilgileri -->
+                            <div class="planet-info">
+                                <h4 class="planet-name">Kepler-10b</h4>
+                                <p class="discovery-details" data-i18n="discoveredByNasa">NASA tarafından keşfedildi (2011)</p>
+                                <p class="discovery-method" data-i18n="transitMethod">Transit Method</p>
+                            </div>
+                            
+                            <!-- Arşivi Görüntüle Butonu -->
+                            <div class="archive-button" id="openArchive">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span data-i18n="viewArchive">Arşivi Görüntüle</span>
+                            </div>
+                            
+                            <!-- Alt İstatistikler -->
+                            <div class="mission-divider"></div>
+                            <div class="discovery-stats">
+                                <div class="stat-item"><i class="fas fa-database"></i><span>5000+</span></div>
+                                <div class="stat-item"><i class="fas fa-check"></i><span data-i18n="verified">Verified</span></div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Confidence Gauge -->
+                        <div class="ui-card confidence-gauge-card">
+                            <!-- Güven Göstergesi Başlık -->
+                            <div class="confidence-header">
+                                <div class="confidence-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <span class="confidence-title" data-i18n="confidenceGauge">Güven Göstergesi</span>
+                            </div>
+                            
+                            <!-- Güven Göstergesi -->
+                            <div class="confidence-gauge-container">
+                                <div class="confidence-gauge" id="confidenceGauge">
+                                    <div class="gauge-arc"></div>
+                                    <div class="gauge-value" id="gaugeValue">93.8%</div>
+                                    <div class="gauge-label" data-i18n="confidence">Güven</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Renk Lejantı -->
+                            <div class="confidence-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot low"></div>
+                                    <span class="legend-text" data-i18n="confidenceLow">Düşük</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot medium"></div>
+                                    <span class="legend-text" data-i18n="confidenceMedium">Orta</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot high"></div>
+                                    <span class="legend-text" data-i18n="confidenceHigh">Yüksek</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mission Badge -->
+                        <div class="ui-card mission-badge-card">
+                            <!-- Görev Rozeti Bölümü -->
+                            <div class="mission-badge-header">
+                                <div class="badge-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="badge-title" data-i18n="missionBadge">Görev Rozeti</span>
+                            </div>
+                            
+                            <!-- Ayırıcı Çizgi -->
+                            <div class="mission-divider"></div>
+                            
+                            <!-- Kepler Bölümü -->
+                            <div class="mission-content">
+                                <div class="mission-hero">
+                                    <i class="fas fa-satellite"></i>
+                                </div>
+                                <h4 class="mission-title" id="missionName">Kepler</h4>
+                                <div class="mission-subtitle" data-i18n="spaceObservatory">Space Observatory</div>
+                                <div class="mission-stats">
+                                    <div class="stat-chip">
+                                        <div class="chip-icon"><i class="fas fa-calendar-alt"></i></div>
+                                        <div class="chip-text">
+                                            <div class="chip-label" data-i18n="launch">LAUNCH</div>
+                                            <div class="chip-value">2009</div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-chip">
+                                        <div class="chip-icon"><i class="fas fa-globe"></i></div>
+                                        <div class="chip-text">
+                                            <div class="chip-label" data-i18n="planets">PLANETS</div>
+                                            <div class="chip-value">2,662</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <aside class="notes">
+                        Web arayüzü: Discovery card, confidence gauge ve mission badge.
+                    </aside>
+                </section>
+                
+                <!-- Slide 7: Results -->
+                <section class="results-slide">
+                    <h2 data-i18n="resultsTitle">Sonuçlar</h2>
+                    <div class="two-column results-cols">
+                        <div class="result-left">
+                            <canvas id="rocChart"></canvas>
+                        </div>
+                        <div class="result-right">
+                            <div class="confusion-placeholder">
+                                <h4 class="confusion-title" data-i18n="confusionMatrix">Karmaşıklık Matrisi</h4>
+                                <div class="matrix-grid">
+                                    <div class="matrix-cell tp">TP: 292</div>
+                                    <div class="matrix-cell fp">FP: 11</div>
+                                    <div class="matrix-cell fn">FN: 0</div>
+                                    <div class="matrix-cell tn">TN: 196</div>
+                                </div>
+                            </div>
+                            <div class="summary-box">
+                                <p class="metric-row"><span class="metric-label" data-i18n="accuracy">Doğruluk</span> <span class="metric-val">98.6%</span></p>
+                                <p class="metric-row"><span class="metric-label" data-i18n="precision">Kesinlik</span> <span class="metric-val">96.2%</span></p>
+                                <p class="metric-row"><span class="metric-label" data-i18n="recall">Duyarlılık</span> <span class="metric-val">100%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Model sonuçları: ROC eğrisi ve confusion matrix.
+                    </aside>
+                </section>
+                
+                <!-- Slide 8: Bizi Öne Çıkaranlar -->
+                <section class="roadmap-slide">
+                    <h2 class="highlights-title" data-i18n="highlightsTitle">Bizi Öne Çıkaranlar</h2>
+                    <!-- Test button for debugging -->
+                    <button onclick="showNegativeCategoriesPopup()" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: #ff8c00; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px;"><span data-i18n="negativePopupButton">Tipik Negatifler</span></button>
+                    <ul class="roadmap-list" id="roadmapList">
+                        <!-- Dynamic content will be loaded by JavaScript -->
+                    </ul>
+                    <aside class="notes">
+                        Öne çıkan özellikler ve teşekkürler.
+                    </aside>
+                </section>
+                
+                <!-- Slide 9: Hazırlayanlar ve Kaynakça -->
+                <section class="combined-slide">
+                    <div class="combined-container">
+                        <!-- Hazırlayanlar Bölümü -->
+                        <div class="credits-section">
+                            <h2 class="section-main-title" data-i18n="creditsTitle">Hazırlayanlar</h2>
+                            <div class="credits-grid-compact">
+                                <div class="credits-card-compact">
+                                    <div class="credits-avatar-compact">
+                                        <i class="fas fa-user-astronaut"></i>
+                                    </div>
+                                    <div class="credits-info">
+                                        <h3 class="credits-name-compact">Muhammed Yusuf TOSUN</h3>
+                                        <div class="social-links">
+                                            <a href="https://www.linkedin.com/in/muhammed-yusuf-tosun-866268354/" class="social-link linkedin" target="_blank">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+                                            <a href="https://github.com/MYusufTOSUN" class="social-link github" target="_blank">
+                                                <i class="fab fa-github"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="credits-card-compact">
+                                    <div class="credits-avatar-compact">
+                                        <i class="fas fa-user-astronaut"></i>
+                                    </div>
+                                    <div class="credits-info">
+                                        <h3 class="credits-name-compact">Mustafa BOSNALI</h3>
+                                        <div class="social-links">
+                                            <a href="https://www.linkedin.com/in/mustafa-bosnali/" class="social-link linkedin" target="_blank">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+                                            <a href="https://github.com/mustafabsnl" class="social-link github" target="_blank">
+                                                <i class="fab fa-github"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="credits-card-compact">
+                                    <div class="credits-avatar-compact">
+                                        <i class="fas fa-user-astronaut"></i>
+                                    </div>
+                                    <div class="credits-info">
+                                        <h3 class="credits-name-compact">Hikmet ALANLI</h3>
+                                        <div class="social-links">
+                                            <a href="https://www.linkedin.com/in/hikmet-alanl%C4%B1-4493b02a4/" class="social-link linkedin" target="_blank">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+                                            <a href="https://github.com/hikmetdev" class="social-link github" target="_blank">
+                                                <i class="fab fa-github"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Kaynakça Bölümü -->
+                        <div class="references-section-compact">
+                            <h2 class="section-main-title" data-i18n="referencesTitle">Kaynakça</h2>
+                            <div class="references-grid-compact">
+                                <div class="references-category">
+                                    <h3 class="category-title" data-i18n="dataSources">Veri Kaynakları</h3>
+                                    <ul class="references-list-compact">
+                                        <li>NASA MAST Archive</li>
+                                        <li>Kepler Mission Data</li>
+                                        <li>Lightkurve 2.4.2</li>
+                                        <li>Astropy 5.3.4</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="references-category">
+                                    <h3 class="category-title">AI & Model</h3>
+                                    <ul class="references-list-compact">
+                                        <li>YOLOv8 - Ultralytics 8.1.0</li>
+                                        <li>PyTorch ≥2.0.0</li>
+                                        <li>Scikit-learn</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="references-category">
+                                    <h3 class="category-title" data-i18n="webTechnologies">Web Teknolojileri</h3>
+                                    <ul class="references-list-compact">
+                                        <li>Flask 3.0.0</li>
+                                        <li>Chart.js Visualization</li>
+                                        <li>Reveal.js Presentation</li>
+                                        <li>Streamlit</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        Proje ekibi, kullanılan kaynaklar ve teknolojiler.
+                    </aside>
+                </section>
+                
+            </div>
+        </div>
+        
+        <!-- Negative Categories Popup Overlay -->
+        <div id="negative-categories-popup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-title-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="popup-title" data-i18n="negativePopupTitle">Negatif Veri Kategorileri</h3>
+                    <button class="popup-close" onclick="closeNegativeCategoriesPopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <p class="popup-subtitle" data-i18n="negativePopupSubtitle">Negatif verilerle yapılan ek eğitim → bizi diğer çalışmalardan öne çıkarıyor</p>
+                
+                <div class="popup-categories-grid">
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-volume-mute"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catPureNoise">Pure Noise</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catStellarRotation">Stellar Rotation</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catStellarPulsation">Stellar Pulsation</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catEclipsingBinary">Eclipsing Binary</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catInstrumentalDrift">Instrumental Drift</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catSingleArtifact">Single Artifact</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catFlare">Flare</h4>
+                    </div>
+                    
+                    <div class="popup-category-card">
+                        <div class="popup-category-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="popup-category-name" data-i18n="catTTV">Transit Timing Variation</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reveal.js -->
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+        
+        <!-- Custom Scripts -->
+        <script src="js/data.js"></script>
+        <script src="js/init.js"></script>
+    </body>
+    </html>

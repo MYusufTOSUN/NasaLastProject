@@ -1,0 +1,195 @@
+/* Exoplanet Detection Theme - Dark Space Theme */
+
+:root {
+    --bg: #0a0e27;
+    --fg: #e6f0ff;
+    --accent: #00d9ff;
+    --violet: #7000ff;
+    --pink: #ff0080;
+    --ok: #00ff88;
+    --err: #ff0044;
+    --card: #11163a;
+    --muted: #93a3c3;
+}
+
+/* Base Reveal Overrides */
+.reveal {
+    font-family: 'Inter', system-ui, 'Segoe UI', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--fg);
+}
+
+.reveal-viewport {
+    background: var(--bg);
+}
+
+.reveal .slides {
+    text-align: left;
+}
+
+/* Typography */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+    font-weight: 700;
+    text-transform: none;
+    margin: 0 0 1rem 0;
+    color: var(--fg);
+}
+
+.reveal h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.reveal h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    line-height: 1.3;
+}
+
+.reveal h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--violet));
+    border-radius: 2px;
+}
+
+.reveal h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: var(--accent);
+    line-height: 1.3;
+}
+
+.reveal h4 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Text Effects */
+.gradient-title {
+    background: linear-gradient(135deg, var(--accent), var(--violet), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+}
+
+.reveal p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.reveal strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Links */
+.reveal a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.reveal a:hover {
+    color: var(--pink);
+    text-shadow: 0 0 10px var(--pink);
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+    margin: 1rem 0;
+}
+
+.reveal li {
+    margin: 0.5rem 0;
+}
+
+.reveal ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.reveal ul li::before {
+    content: '›';
+    color: var(--accent);
+    font-weight: bold;
+    display: inline-block;
+    width: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Code */
+.reveal code {
+    background: var(--card);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    color: var(--ok);
+    font-family: 'Courier New', monospace;
+}
+
+.reveal pre {
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+/* Controls */
+.reveal .controls {
+    color: var(--accent);
+}
+
+.reveal .progress {
+    background: rgba(0, 217, 255, 0.1);
+    color: var(--accent);
+}
+
+.reveal .progress span {
+    background: linear-gradient(90deg, var(--accent), var(--violet));
+}
+
+/* Slide Number */
+.reveal .slide-number {
+    background: rgba(17, 22, 58, 0.8);
+    color: var(--accent);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
+/* Backgrounds */
+.reveal .backgrounds {
+    background: var(--bg);
+}
+
+/* Print PDF Styles */
+@media print {
+    :root {
+        --bg: #1a1a2e;
+        --card: #16213e;
+    }
+    
+    .reveal h1,
+    .reveal h2,
+    .reveal h3 {
+        page-break-after: avoid;
+    }
+    
+    .reveal section {
+        page-break-inside: avoid;
+    }
+}
